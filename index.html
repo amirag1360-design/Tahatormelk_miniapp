@@ -1,20 +1,403 @@
 <!doctype html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>تهاتر ملک</title>
+
 <style>
-*{box-sizing:border-box}body{margin:0;background:#f4f5f7;color:#20242a;font-family:Tahoma,Arial,sans-serif}.app{max-width:520px;margin:auto;min-height:100vh;padding:18px}.head{background:#fff;border-radius:20px;padding:24px 20px;margin-bottom:14px;box-shadow:0 4px 18px rgba(0,0,0,.06)}h1{margin:0 0 8px;font-size:26px}.desc{font-size:14px;line-height:2;color:#68717c}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.item{border:0;background:#fff;border-radius:18px;padding:20px 14px;text-align:right;font:inherit;box-shadow:0 3px 14px rgba(0,0,0,.05);cursor:pointer}.icon{font-size:24px;margin-bottom:10px}.title{font-size:15px;font-weight:700}.small{display:block;margin-top:6px;color:#7b838d;font-size:11px;line-height:1.7}.footer{text-align:center;color:#9299a2;font-size:10px;margin:18px 0}.toast{position:fixed;left:16px;right:16px;bottom:18px;background:#20242a;color:#fff;padding:13px 15px;border-radius:12px;text-align:center;display:none;font-size:13px}
-</style></head>
-<body><main class="app">
-<section class="head"><h1>تهاتر ملک</h1><div class="desc">سامانه خدمات و مدیریت فایل‌های تهاتر ملک</div></section>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:#f4f5f7;
+  color:#20242a;
+  font-family:Tahoma,Arial,sans-serif
+}
+
+.app{
+  max-width:520px;
+  margin:auto;
+  min-height:100vh;
+  padding:18px
+}
+
+.head{
+  background:#fff;
+  border-radius:20px;
+  padding:24px 20px;
+  margin-bottom:14px;
+  box-shadow:0 4px 18px rgba(0,0,0,.06)
+}
+
+h1{
+  margin:0 0 8px;
+  font-size:26px
+}
+
+.desc{
+  font-size:14px;
+  line-height:2;
+  color:#68717c
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px
+}
+
+.item{
+  border:0;
+  background:#fff;
+  border-radius:18px;
+  padding:20px 14px;
+  text-align:right;
+  font:inherit;
+  box-shadow:0 3px 14px rgba(0,0,0,.05);
+  cursor:pointer
+}
+
+.icon{
+  font-size:24px;
+  margin-bottom:10px
+}
+
+.title{
+  font-size:15px;
+  font-weight:700
+}
+
+.small{
+  display:block;
+  margin-top:6px;
+  color:#7b838d;
+  font-size:11px;
+  line-height:1.7
+}
+
+.footer{
+  text-align:center;
+  color:#9299a2;
+  font-size:10px;
+  margin:18px 0
+}
+
+.toast{
+  position:fixed;
+  left:16px;
+  right:16px;
+  bottom:18px;
+  background:#20242a;
+  color:#fff;
+  padding:13px 15px;
+  border-radius:12px;
+  text-align:center;
+  display:none;
+  font-size:13px
+}
+
+.form{
+  display:none;
+  background:#fff;
+  border-radius:20px;
+  padding:20px;
+  margin-top:14px;
+  box-shadow:0 4px 18px rgba(0,0,0,.06)
+}
+
+.form h2{
+  margin:0 0 18px;
+  font-size:20px
+}
+
+label{
+  display:block;
+  margin:12px 0 6px;
+  font-size:13px;
+  font-weight:bold
+}
+
+input,textarea,select{
+  width:100%;
+  border:1px solid #ddd;
+  border-radius:10px;
+  padding:11px;
+  font:inherit;
+  background:#fafafa
+}
+
+textarea{
+  min-height:80px;
+  resize:vertical
+}
+
+.submit{
+  width:100%;
+  border:0;
+  border-radius:12px;
+  padding:13px;
+  margin-top:18px;
+  background:#20242a;
+  color:#fff;
+  font:inherit;
+  cursor:pointer
+}
+
+.back{
+  width:100%;
+  border:0;
+  border-radius:12px;
+  padding:11px;
+  margin-top:9px;
+  background:#eee;
+  font:inherit;
+  cursor:pointer
+}
+</style>
+</head>
+
+<body>
+
+<main class="app">
+
+<section class="head">
+  <h1>تهاتر ملک</h1>
+  <div class="desc">
+    سامانه خدمات و مدیریت فایل‌های تهاتر ملک
+  </div>
+</section>
+
 <section class="grid">
-<button class="item" onclick="show('ثبت فایل')"><div class="icon">🏠</div><div class="title">ثبت فایل</div><span class="small">ثبت مشخصات ملک برای تهاتر</span></button>
-<button class="item" onclick="show('جستجوی فایل')"><div class="icon">🔎</div><div class="title">جستجوی فایل</div><span class="small">یافتن فایل‌های مناسب</span></button>
-<button class="item" onclick="show('فایل‌های من')"><div class="icon">📁</div><div class="title">فایل‌های من</div><span class="small">مدیریت فایل‌های ثبت‌شده</span></button>
-<button class="item" onclick="show('درخواست تهاتر')"><div class="icon">🔄</div><div class="title">درخواست تهاتر</div><span class="small">ثبت و ارسال درخواست</span></button>
-<button class="item" onclick="show('پیگیری درخواست')"><div class="icon">📋</div><div class="title">پیگیری درخواست</div><span class="small">مشاهده وضعیت درخواست‌ها</span></button>
-<button class="item" onclick="show('پشتیبانی')"><div class="icon">💬</div><div class="title">پشتیبانی</div><span class="small">ارتباط و دریافت راهنمایی</span></button>
-</section><div class="footer">نسخه اولیه — آماده توسعه و اتصال به CRM</div></main><div id="toast" class="toast"></div>
-<script>function show(x){const t=document.getElementById('toast');t.textContent='بخش «'+x+'» — در نسخه بعدی فعال می‌شود.';t.style.display='block';setTimeout(()=>t.style.display='none',1800)}</script>
-</body></html>
+
+<button class="item" onclick="openForm()">
+  <div class="icon">🏠</div>
+  <div class="title">ثبت فایل</div>
+  <span class="small">ثبت مشخصات ملک برای تهاتر</span>
+</button>
+
+<button class="item" onclick="show('جستجوی فایل')">
+  <div class="icon">🔎</div>
+  <div class="title">جستجوی فایل</div>
+  <span class="small">یافتن فایل‌های مناسب</span>
+</button>
+
+<button class="item" onclick="show('فایل‌های من')">
+  <div class="icon">📁</div>
+  <div class="title">فایل‌های من</div>
+  <span class="small">مدیریت فایل‌های ثبت‌شده</span>
+</button>
+
+<button class="item" onclick="show('درخواست تهاتر')">
+  <div class="icon">🔄</div>
+  <div class="title">درخواست تهاتر</div>
+  <span class="small">ثبت و ارسال درخواست</span>
+</button>
+
+<button class="item" onclick="show('پیگیری درخواست')">
+  <div class="icon">📋</div>
+  <div class="title">پیگیری درخواست</div>
+  <span class="small">مشاهده وضعیت درخواست‌ها</span>
+</button>
+
+<button class="item" onclick="show('پشتیبانی')">
+  <div class="icon">💬</div>
+  <div class="title">پشتیبانی</div>
+  <span class="small">ارتباط و دریافت راهنمایی</span>
+</button>
+
+</section>
+
+<section id="registerForm" class="form">
+
+<h2>ثبت فایل تهاتر</h2>
+
+<label>شهر *</label>
+<input id="city" placeholder="مثلاً کاشان">
+
+<label>منطقه / محله</label>
+<input id="area" placeholder="مثلاً مرکز شهر">
+
+<label>نوع ملک</label>
+<input id="propertyType" placeholder="مثلاً خانه، زمین، باغ">
+
+<label>مساحت</label>
+<input id="areaSize" placeholder="مثلاً 250 متر">
+
+<label>وضعیت سند</label>
+<input id="deedStatus" placeholder="مثلاً سند تک‌برگ">
+
+<label>ارزش تقریبی</label>
+<input id="estimatedValue" placeholder="مثلاً 20 میلیارد">
+
+<label>توضیحات ملک</label>
+<textarea id="propertyDescription"></textarea>
+
+<label>نام مالک *</label>
+<input id="ownerName">
+
+<label>شماره تماس مالک *</label>
+<input id="ownerPhone" type="tel">
+
+<label>خواسته دقیق مالک *</label>
+<textarea id="ownerRequest" placeholder="مالک دقیقاً چه چیزی می‌خواهد؟"></textarea>
+
+<label>محدوده موردنظر برای تهاتر</label>
+<input id="barterArea">
+
+<label>نوع ملک موردنظر در تهاتر</label>
+<input id="barterPropertyType">
+
+<label>مابه‌التفاوت</label>
+<input id="difference">
+
+<label>شرایط / توضیحات تهاتر</label>
+<textarea id="barterConditions"></textarea>
+
+<label>تصاویر / مدارک</label>
+<input id="documents" placeholder="فعلاً لینک یا توضیح">
+
+<label>منبع فایل</label>
+<input id="source" placeholder="مثلاً مالک مستقیم / مشاور / آشنا">
+
+<button class="submit" onclick="submitFile()">
+ثبت فایل در CRM
+</button>
+
+<button class="back" onclick="closeForm()">
+بازگشت
+</button>
+
+</section>
+
+<div class="footer">
+نسخه اولیه — متصل به CRM
+</div>
+
+</main>
+
+<div id="toast" class="toast"></div>
+
+<script>
+
+const CRM_URL =
+"https://script.google.com/macros/s/AKfycbwrO4jgzEkch7-09IuzdjXnxC4ICtdg-h5tRVhByKnT5ebVCeRJ3WZHYJhLv1xUBq5MhQ/exec";
+
+
+function openForm(){
+  document.querySelector('.grid').style.display='none';
+  document.getElementById('registerForm').style.display='block';
+}
+
+
+function closeForm(){
+  document.getElementById('registerForm').style.display='none';
+  document.querySelector('.grid').style.display='grid';
+}
+
+
+function show(x){
+  const t=document.getElementById('toast');
+
+  t.textContent=
+  'بخش «'+x+'» — در نسخه بعدی فعال می‌شود.';
+
+  t.style.display='block';
+
+  setTimeout(()=>{
+    t.style.display='none';
+  },1800);
+}
+
+
+async function submitFile(){
+
+  const city=document.getElementById('city').value.trim();
+  const ownerName=document.getElementById('ownerName').value.trim();
+  const ownerPhone=document.getElementById('ownerPhone').value.trim();
+  const ownerRequest=document.getElementById('ownerRequest').value.trim();
+
+  if(!city || !ownerName || !ownerPhone || !ownerRequest){
+    alert('لطفاً موارد ستاره‌دار را کامل کنید.');
+    return;
+  }
+
+  const data={
+
+    city:city,
+
+    area:document.getElementById('area').value,
+
+    propertyType:
+      document.getElementById('propertyType').value,
+
+    areaSize:
+      document.getElementById('areaSize').value,
+
+    deedStatus:
+      document.getElementById('deedStatus').value,
+
+    estimatedValue:
+      document.getElementById('estimatedValue').value,
+
+    propertyDescription:
+      document.getElementById('propertyDescription').value,
+
+    ownerName:ownerName,
+
+    ownerPhone:ownerPhone,
+
+    ownerRequest:ownerRequest,
+
+    barterArea:
+      document.getElementById('barterArea').value,
+
+    barterPropertyType:
+      document.getElementById('barterPropertyType').value,
+
+    difference:
+      document.getElementById('difference').value,
+
+    barterConditions:
+      document.getElementById('barterConditions').value,
+
+    documents:
+      document.getElementById('documents').value,
+
+    source:
+      document.getElementById('source').value
+  };
+
+
+  try{
+
+    await fetch(CRM_URL,{
+      method:'POST',
+      body:JSON.stringify(data),
+      mode:'no-cors'
+    });
+
+    alert(
+      'فایل با موفقیت برای ثبت در CRM ارسال شد.'
+    );
+
+    document.getElementById('registerForm').reset();
+
+    closeForm();
+
+  }catch(error){
+
+    alert(
+      'ارسال فایل انجام نشد. لطفاً دوباره تلاش کنید.'
+    );
+
+    console.error(error);
+  }
+
+}
+
+</script>
+
+</body>
+</html>
